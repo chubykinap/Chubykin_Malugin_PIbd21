@@ -17,13 +17,10 @@ namespace Models
         [Required]
         public string Password { set; get; }
 
-		[ForeignKey("AdminId")]
-		public virtual List<Transfer> Transfers { get; set; }
+        [Required]
+        public string Mail { get; set; }
 
-		[ForeignKey("AdminId")]
-		public virtual List<Food> Foods { get; set; }
-
-		[ForeignKey("AdminId")]
-		public virtual List<Product> Products { get; set; }
-	}
+        [ForeignKey("AdminId")]
+        public virtual List<Transfer> Transfers { get; set; }
+    }
 }

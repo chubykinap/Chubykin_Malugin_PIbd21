@@ -5,12 +5,10 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes.ImplementationsBD
 {
-	public class FoodServiceBD : IFoodService
+    public class FoodServiceBD : IFoodService
 	{
 		private ZooDbContex context;
 

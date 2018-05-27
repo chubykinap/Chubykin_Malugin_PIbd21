@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Classes.BindingModels
 {
-	public class ProviderBindingModel
+    [DataContract]
+    public class ProviderBindingModel
 	{
+        [DataMember]
 		public int ID { set; get; }
 		
+        [DataMember]
 		public string Login { set; get; }
 		
+        [DataMember]
 		public string Password { set; get; }
 	}
 }

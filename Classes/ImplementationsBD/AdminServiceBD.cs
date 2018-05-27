@@ -5,12 +5,10 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes.ImplementationsBD
 {
-	public class AdminServiceBD : IAdminService
+    public class AdminServiceBD : IAdminService
 	{
 		private ZooDbContex context;
 
@@ -89,5 +87,18 @@ namespace Classes.ImplementationsBD
 				throw new Exception("Элемент не найден");
 			}
 		}
-	}
+
+        public void TryEnter(AdminBindingModel model)
+        {
+            Admin admin = context.Admins.FirstOrDefault(rec => rec.Login == model.Login);
+            if (admin == null)
+            {
+                throw new Exception("Неверный логин");
+            }
+            if (admin.Password != model.Password)
+            {
+                throw new Exception("Неверный пароль");
+            }
+        }
+    }
 }

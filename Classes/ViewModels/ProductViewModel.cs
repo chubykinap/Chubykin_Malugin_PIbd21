@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Classes.ViewModels
 {
-	public class ProductViewModel
-	{
-		public int ID { set; get; }
+    [DataContract]
+    public class ProductViewModel
+    {
+        [DataMember]
+        public int ID { set; get; }
 
-		public string ProductName { set; get; }
+        [DataMember]
+        public string ProductName { set; get; }
 
-		public List<ProductRequirementViewModel> ProductRequirements { get; set; }
+        [DataMember]
+        public List<ProductRequirementViewModel> ProductRequirements { get; set; }
 
-		public List<ProductStorageViewModel> ProductStorages { get; set; }
+        [DataMember]
+        public List<ProductStorageViewModel> ProductStorages { get; set; }
 	}
 }

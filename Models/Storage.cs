@@ -15,13 +15,8 @@ namespace Models
     {
 		public int Id { set; get; }
 
-		public int ProviderId { set; get; }
-
-		[Required]
-		public string StorageName { set; get; }
-
-		[ForeignKey("StorageId")]
-		public virtual List<Transfer> Transfers { get; set; }
+        [Required]
+        public string StorageName { set; get; }
 
 		[ForeignKey("StorageId")]
 		public virtual List<ProductStorage> ProductStorages { set; get; }

@@ -19,11 +19,5 @@ namespace Models
 
 		[ForeignKey("ProviderId")]
 		public virtual List<Transfer> Transfers { get; set; }
-
-		[ForeignKey("ProviderId")]
-		public virtual List<Storage> Storages { get; set; }
-
-		[ForeignKey("ProviderId")]
-		public virtual List<Product> Products { get; set; }
 	}
 }

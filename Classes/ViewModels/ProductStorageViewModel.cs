@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Classes.ViewModels
 {
-	public class ProductStorageViewModel
-	{
-		public int ID { set; get; }
+    [DataContract]
+    public class ProductStorageViewModel
+    {
+        [DataMember]
+        public int ID { set; get; }
 
-		public int StorageId { set; get; }
+        [DataMember]
+        public int StorageId { set; get; }
 
-		public int ProductId { set; get; }
+        [DataMember]
+        public int ProductId { set; get; }
 
-		public int Count { set; get; }
+        [DataMember]
+        public int Count { set; get; }
 	}
 }

@@ -11,12 +11,11 @@ namespace Models
     {
         public int ID { set; get; }
 
-		public int AdminId { set; get; }
-
-		public int ProviderId { set; get; }
-
-		[Required]
+        [Required]
         public string ProductName { set; get; }
+
+        [Required]
+        public int Count { set; get; }
 
 		[ForeignKey("ProductId")]
         public virtual List<ProductRequirement> ProductRequirements { set; get; }

@@ -13,8 +13,6 @@ namespace Models
 
 		public int ProviderId { set; get; }
 
-		public int StorageId { set; get; }
-
 		public int ProductId { set; get; }
 
 		public int Count { set; get; }
@@ -28,8 +26,6 @@ namespace Models
 		public virtual Admin Admin { set; get; }
 
 		public virtual Provider Provider { set; get; }
-
-		public virtual Storage Storage { set; get; }
 
 		public virtual Product Product { set; get; }
 	}

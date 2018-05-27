@@ -6,12 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.SqlServer;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes.ImplementationsBD
 {
-	public class MainServiceBD : ITransferService
+    public class MainServiceBD : ITransferService
 	{
 		private ZooDbContex context;
 
@@ -29,13 +27,11 @@ namespace Classes.ImplementationsBD
 					ProviderId = rec.ProviderId,
 					AdminId = rec.AdminId,
 					ProductId = rec.ProductId,
-					StorageId = rec.StorageId,
 					DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
 								SqlFunctions.DateName("mm", rec.DateCreate) + " " +
 								SqlFunctions.DateName("yyyy", rec.DateCreate),
 					Status = rec.Status.ToString(),
 					ProductName = rec.Product.ProductName,
-					StorageName = rec.Storage.StorageName,
 					Count = rec.Count
 				})
 				.ToList();
@@ -50,7 +46,6 @@ namespace Classes.ImplementationsBD
 				ProviderId = model.ProviderId,
 				AdminId = model.AdminId,
 				ProductId = model.ProductId,
-				StorageId = model.StorageId,
 				DateCreate = DateTime.Now,
 				Count = model.Count
 			});

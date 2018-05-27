@@ -8,11 +8,9 @@ namespace Models
     public class ProductRequirement
     {
         public int ID { set; get; }
-
-		[Required]
+		
 		public int FoodId { set; get; }
-
-		[Required]
+		
 		public int ProductId { set; get; }
 
 		public int Count { set; get; }

@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Classes.ViewModels
 {
-	public class AdminViewModel
-	{
-		public int ID { set; get; }
+    [DataContract]
+    public class AdminViewModel
+    {
+        [DataMember]
+        public string Password { set; get; }
 
-		public string Login { set; get; }
-	}
+        [DataMember]
+        public int ID { set; get; }
+
+        [DataMember]
+        public string Login { set; get; }
+
+        [DataMember]
+        public string Mail { set; get; }
+    }
 }

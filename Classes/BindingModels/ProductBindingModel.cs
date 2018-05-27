@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Classes.BindingModels
 {
+    [DataContract]
 	public class ProductBindingModel
 	{
+        [DataMember]
 		public int ID { set; get; }
 		
+        [DataMember]
 		public string ProductName { set; get; }
-
-		public List<ProductRequirementBindingModel> ProductRequirements { get; set; }
-
-		public List<ProductStorageBindingModel> ProductStorages { get; set; }
 	}
 }

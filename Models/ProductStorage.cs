@@ -8,11 +8,9 @@ namespace Models
     public class ProductStorage
     {
         public int ID { set; get; }
-
-		[Required]
+		
 		public int StorageId { set; get; }
-
-		[Required]
+		
 		public int ProductId { set; get; }
 
 		public int Count { set; get; }
