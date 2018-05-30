@@ -31,7 +31,7 @@ namespace WindowsFormView
 		{
 			var currentContainer = new UnityContainer();
 			currentContainer.RegisterType<DbContext, ZooDbContex>(new HierarchicalLifetimeManager());
-			currentContainer.RegisterType<ITransferService, MainServiceBD>(new HierarchicalLifetimeManager());
+			currentContainer.RegisterType<ITransferService, TransferServiceBD>(new HierarchicalLifetimeManager());
 			currentContainer.RegisterType<IAdminService, AdminServiceBD>(new HierarchicalLifetimeManager());
 			currentContainer.RegisterType<IFoodService, FoodServiceBD>(new HierarchicalLifetimeManager());
 			currentContainer.RegisterType<IProductService, ProductServiceBD>(new HierarchicalLifetimeManager());

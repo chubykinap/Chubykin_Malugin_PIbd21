@@ -1,6 +1,9 @@
+using Classes.ImplementationsBD;
+using Classes.Interfaces;
 using System;
 
 using Unity;
+using Unity.Lifetime;
 
 namespace WebApi
 {
@@ -42,6 +45,13 @@ namespace WebApi
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+
+            container.RegisterType<IAdminService, AdminServiceBD>(new HierarchicalLifetimeManager());
+            container.RegisterType<IProductService, ProductServiceBD>(new HierarchicalLifetimeManager());
+            container.RegisterType<IFoodService, FoodServiceBD>(new HierarchicalLifetimeManager());
+            container.RegisterType<ITransferService, TransferServiceBD>(new HierarchicalLifetimeManager());
+            container.RegisterType<IProviderService, ProviderServiceBD>(new HierarchicalLifetimeManager());
+            container.RegisterType<IStorageService, StorageServiceBD>(new HierarchicalLifetimeManager());
         }
     }
 }

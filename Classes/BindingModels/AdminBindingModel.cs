@@ -2,6 +2,7 @@
 
 namespace Classes.BindingModels
 {
+    [DataContract]
     public class AdminBindingModel
 	{
         [DataMember]

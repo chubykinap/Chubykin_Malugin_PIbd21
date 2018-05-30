@@ -9,11 +9,11 @@ using System.Linq;
 
 namespace Classes.ImplementationsBD
 {
-    public class MainServiceBD : ITransferService
+    public class TransferServiceBD : ITransferService
 	{
 		private ZooDbContex context;
 
-		public MainServiceBD(ZooDbContex context)
+		public TransferServiceBD(ZooDbContex context)
 		{
 			this.context = context;
 		}

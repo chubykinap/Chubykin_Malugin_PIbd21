@@ -22,6 +22,15 @@ namespace WebView {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ChangeData элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ChangeData;
+        
+        /// <summary>
         /// StorageButton элемент управления.
         /// </summary>
         /// <remarks>

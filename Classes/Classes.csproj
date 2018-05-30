@@ -88,7 +88,7 @@
     <Compile Include="BindingModels\TransferBindingModel.cs" />
     <Compile Include="ImplementationsBD\AdminServiceBD.cs" />
     <Compile Include="ImplementationsBD\FoodServiceBD.cs" />
-    <Compile Include="ImplementationsBD\MainServiceBD.cs" />
+    <Compile Include="ImplementationsBD\TransferServiceBD.cs" />
     <Compile Include="ImplementationsBD\ProductServiceBD.cs" />
     <Compile Include="ImplementationsBD\ProviderServiceBD.cs" />
     <Compile Include="ImplementationsBD\StorageServiceBD.cs" />

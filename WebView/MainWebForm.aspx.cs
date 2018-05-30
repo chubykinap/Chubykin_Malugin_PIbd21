@@ -11,6 +11,7 @@ namespace WebView
     public partial class MainWebForm : System.Web.UI.Page
     {
         List<FoodViewModel> list;
+        private int id;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,6 +78,12 @@ namespace WebView
         protected void RefreshButton_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        protected void ChangeData_Click(object sender, EventArgs e)
+        {
+            Session["id"] = id;
+            Server.Transfer("RegistrationWebForm.aspx");
         }
     }
 }

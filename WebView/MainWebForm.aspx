@@ -10,6 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Button ID="ChangeData" runat="server" OnClick="Button1_Click" Text="Изменить данные" />
+            <br />
+            <br />
             <asp:Button ID="StorageButton" runat="server" OnClick="StorageButton_Click" Text="Склад" Width="100px" />
             <br />
             <asp:Button ID="MailButton" runat="server" OnClick="MailButton_Click" Text="Почта" Width="100px" />

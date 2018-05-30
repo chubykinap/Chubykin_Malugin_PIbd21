@@ -48,7 +48,7 @@ namespace Classes.ImplementationsBD
 			Admin element = context.Admins.FirstOrDefault(rec => rec.Login == model.Login);
 			if (element != null)
 			{
-				throw new Exception("Уже есть сотрудник с таким ФИО");
+				throw new Exception("Такой логин уже занят");
 			}
 			context.Admins.Add(new Admin
 			{
@@ -63,7 +63,7 @@ namespace Classes.ImplementationsBD
 										rec.Login == model.Login && rec.ID != model.ID);
 			if (element != null)
 			{
-				throw new Exception("Уже есть сотрудник с таким ФИО");
+				throw new Exception("Такой логин уже занят");
 			}
 			element = context.Admins.FirstOrDefault(rec => rec.ID == model.ID);
 			if (element == null)

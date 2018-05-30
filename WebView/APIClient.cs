@@ -29,6 +29,11 @@ namespace WebView
             return await client.PostAsJsonAsync(requestUrl, model);
         }
 
+        public static T GetElement<T>(Task<HttpResponseMessage> response)
+        {
+            return response.Result.Content.ReadAsAsync<T>().Result;
+        }
+
         public static async Task<T> GetRequestData<T>(string requestUrl)
         {
             HttpResponseMessage response = Task.Run(() => GetRequest(requestUrl)).Result;
