@@ -12,9 +12,9 @@ namespace Classes.ImplementationsBD
 	{
 		private ZooDbContex context;
 
-		public ProviderServiceBD(ZooDbContex context)
+		public ProviderServiceBD()
 		{
-			this.context = context;
+			this.context = new ZooDbContex();
 		}
 
 		public List<ProviderViewModel> GetList()
@@ -23,8 +23,9 @@ namespace Classes.ImplementationsBD
 				.Select(rec => new ProviderViewModel
 				{
 					ID = rec.ID,
-					Login = rec.Login
-				})
+					Login = rec.Login,
+                    Password = rec.Password
+                })
 				.ToList();
 			return result;
 		}
@@ -37,8 +38,9 @@ namespace Classes.ImplementationsBD
 				return new ProviderViewModel
 				{
 					ID = element.ID,
-					Login = element.Login
-				};
+					Login = element.Login,
+                    Password = element.Password
+                };
 			}
 			throw new Exception("Элемент не найден");
 		}
@@ -52,8 +54,9 @@ namespace Classes.ImplementationsBD
 			}
 			context.Admins.Add(new Admin
 			{
-				Login = model.Login
-			});
+				Login = model.Login,
+                Password = model.Password
+            });
 			context.SaveChanges();
 		}
 
@@ -71,7 +74,8 @@ namespace Classes.ImplementationsBD
 				throw new Exception("Элемент не найден");
 			}
 			element.Login = model.Login;
-			context.SaveChanges();
+            element.Password = model.Password;
+            context.SaveChanges();
 		}
 
 		public void DelElement(int ID)

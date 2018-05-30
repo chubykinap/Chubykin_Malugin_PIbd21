@@ -13,9 +13,9 @@ namespace Classes.ImplementationsBD
 	{
 		private ZooDbContex context;
 
-		public TransferServiceBD(ZooDbContex context)
+		public TransferServiceBD()
 		{
-			this.context = context;
+			this.context = new ZooDbContex();
 		}
 
 		public List<TransferViewModel> GetList()

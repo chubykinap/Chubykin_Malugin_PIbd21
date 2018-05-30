@@ -53,10 +53,10 @@ namespace WebView
             HttpResponseMessage response = Task.Run(() => PostRequest(requestUrl, model)).Result;
             if (!response.IsSuccessStatusCode)
             {
-                string error = response.Content.ReadAsStringAsync().Result;
-                var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
-                throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
-                    " " + (errorMessage.ExceptionMessage ?? ""));
+                    string error = response.Content.ReadAsStringAsync().Result;
+                    var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
+                    throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
+                        " " + (errorMessage.ExceptionMessage ?? ""));
             }
         }
 

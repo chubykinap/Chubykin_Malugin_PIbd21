@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
-<body>
+<body style="width: 1700px; height: 795px">
     <form id="form1" runat="server">
-        <div>
+        <div aria-autocomplete="none" aria-busy="False" aria-checked="false" aria-expanded="true" aria-hidden="False" aria-invalid="true" aria-live="off" aria-multiline="True" aria-multiselectable="False" aria-orientation="vertical" aria-pressed="mixed" aria-selected="undefined" aria-sort="none" style="width: 564px">
             <asp:Label ID="Label3" runat="server" Text="Почта" Width="160px"></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <br />
@@ -17,10 +17,10 @@
             <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
             <br />
             <asp:Label ID="Label2" runat="server" Text="Пароль" Width="160px"></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox3" runat="server" TextMode="Password"></asp:TextBox>
             <br />
             <asp:Label ID="Label4" runat="server" Text="Подтверждение пароля" Width="160px"></asp:Label>
-            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox4" runat="server" TextMode="Password"></asp:TextBox>
             <br />
             <br />
             <asp:Button ID="ButtonReg" runat="server" OnClick="ButtonReg_Click" Text="Сохранить" />

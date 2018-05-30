@@ -6,10 +6,10 @@ namespace Classes.ViewModels
     public class AdminViewModel
     {
         [DataMember]
-        public string Password { set; get; }
+        public int ID { set; get; }
 
         [DataMember]
-        public int ID { set; get; }
+        public string Password { set; get; }
 
         [DataMember]
         public string Login { set; get; }

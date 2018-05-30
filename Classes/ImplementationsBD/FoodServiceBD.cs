@@ -12,9 +12,9 @@ namespace Classes.ImplementationsBD
 	{
 		private ZooDbContex context;
 
-		public FoodServiceBD(ZooDbContex context)
+		public FoodServiceBD()
 		{
-			this.context = context;
+			this.context = new ZooDbContex();
 		}
 
 		public List<FoodViewModel> GetList()
@@ -43,14 +43,14 @@ namespace Classes.ImplementationsBD
 
 		public FoodViewModel GetElement(int ID)
 		{
-			Food element = context.Foods.FirstOrDefault(rec => rec.ID == ID);
-			if (element != null)
+			Food Product = context.Foods.FirstOrDefault(rec => rec.ID == ID);
+			if (Product != null)
 			{
 				return new FoodViewModel
 				{
-					ID = element.ID,
+					ID = Product.ID,
 					ProductRequirements = context.ProductRequirements
-							.Where(recPR => recPR.ProductId == element.ID)
+							.Where(recPR => recPR.ProductId == Product.ID)
 							.Select(recPR => new ProductRequirementViewModel
 							{
 								ID = recPR.ID,
@@ -68,30 +68,117 @@ namespace Classes.ImplementationsBD
 
 		public void AddElement(FoodBindingModel model)
 		{
-			Food element = context.Foods.FirstOrDefault(rec => rec.ID != model.ID);
-			context.Foods.Add(new Food
-			{
-				FoodName = model.FoodName
-			});
-			context.SaveChanges();
-		}
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    Food Product = context.Foods.FirstOrDefault(rec => rec.FoodName == model.FoodName);
+                    if (Product != null)
+                    {
+                        throw new Exception("Уже есть изделие с таким названием");
+                    }
+                    Product = new Food
+                    {
+                        FoodName = model.FoodName
+                    };
+                    context.Foods.Add(Product);
+                    context.SaveChanges();
+                    var groupProducts = model.ElementRequirement
+                                                .GroupBy(rec => rec.ProductId)
+                                                .Select(rec => new
+                                                {
+                                                    ProductID = rec.Key,
+                                                    Count = rec.Sum(r => r.Count)
+                                                });
+                    foreach (var groupProduct in groupProducts)
+                    {
+                        context.ProductRequirements.Add(new ProductRequirement
+                        {
+                            FoodId = Product.ID,
+                            ProductId = groupProduct.ProductID
+                        });
+                        context.SaveChanges();
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
 
 		public void UpdElement(FoodBindingModel model)
 		{
-			Food element = context.Foods.FirstOrDefault(rec =>
-										rec.ID != model.ID);
-			if (element != null)
-			{
-				throw new Exception("Уже есть склад с таким названием");
-			}
-			element = context.Foods.FirstOrDefault(rec => rec.ID == model.ID);
-			if (element == null)
-			{
-				throw new Exception("Элемент не найден");
-			}
-			element.FoodName = model.FoodName;
-			context.SaveChanges();
-		}
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    Food Product = context.Foods.FirstOrDefault(rec =>
+                                        rec.FoodName == model.FoodName && rec.ID != model.ID);
+                    if (Product != null)
+                    {
+                        throw new Exception("Уже есть питание с таким названием");
+                    }
+                    Product = context.Foods.FirstOrDefault(rec => rec.ID == model.ID);
+                    if (Product == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                    Product.FoodName = model.FoodName;
+                    context.SaveChanges();
+
+                    var compIDs = model.ElementRequirement.Select(rec => rec.ProductId).Distinct();
+                    var updateProducts = context.ProductRequirements
+                                                    .Where(rec => rec.FoodId == model.ID &&
+                                                        compIDs.Contains(rec.ProductId));
+                    foreach (var updateProduct in updateProducts)
+                    {
+                        updateProduct.Count = model.ElementRequirement
+                                                        .FirstOrDefault(rec => rec.ID == updateProduct.ID).Count;
+                    }
+                    context.SaveChanges();
+                    context.ProductRequirements.RemoveRange(
+                                        context.ProductRequirements.Where(rec => rec.FoodId == model.ID &&
+                                                                            !compIDs.Contains(rec.ProductId)));
+                    context.SaveChanges();
+                    var groupProducts = model.ElementRequirement
+                                                .Where(rec => rec.ID == 0)
+                                                .GroupBy(rec => rec.ProductId)
+                                                .Select(rec => new
+                                                {
+                                                    ProductID = rec.Key,
+                                                    Count = rec.Sum(r => r.Count)
+                                                });
+                    foreach (var groupProduct in groupProducts)
+                    {
+                        ProductRequirement ProductPC = context.ProductRequirements
+                                                .FirstOrDefault(rec => rec.FoodId == model.ID &&
+                                                                rec.ProductId == groupProduct.ProductID);
+                        if (ProductPC != null)
+                        {
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            context.ProductRequirements.Add(new ProductRequirement
+                            {
+                                FoodId = model.ID,
+                                ProductId = groupProduct.ProductID
+                            });
+                            context.SaveChanges();
+                        }
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
 
 		public void DelElement(int ID)
 		{
@@ -99,12 +186,12 @@ namespace Classes.ImplementationsBD
 			{
 				try
 				{
-					Food element = context.Foods.FirstOrDefault(rec => rec.ID == ID);
-					if (element != null)
+					Food Product = context.Foods.FirstOrDefault(rec => rec.ID == ID);
+					if (Product != null)
 					{
 						context.ProductRequirements.RemoveRange(
 											context.ProductRequirements.Where(rec => rec.FoodId == ID));
-						context.Foods.Remove(element);
+						context.Foods.Remove(Product);
 						context.SaveChanges();
 					}
 					else
@@ -120,5 +207,5 @@ namespace Classes.ImplementationsBD
 				}
 			}
 		}
-	}
+    }
 }

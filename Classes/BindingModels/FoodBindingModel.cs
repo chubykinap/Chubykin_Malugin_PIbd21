@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Classes.BindingModels
 {
@@ -10,5 +11,8 @@ namespace Classes.BindingModels
 
         [DataMember]
 		public string FoodName { set; get; }
-	}
+
+        [DataMember]
+        public List<ProductRequirementBindingModel> ElementRequirement { get; set; }
+    }
 }

@@ -12,9 +12,9 @@ namespace Classes.ImplementationsBD
 	{
 		private ZooDbContex context;
 
-		public StorageServiceBD(ZooDbContex context)
+		public StorageServiceBD()
 		{
-			this.context = context;
+			this.context = new ZooDbContex();
 		}
 
 		public List<StorageViewModel> GetList()

@@ -23,7 +23,7 @@ namespace WebView
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Введите пароль');</script>");
                 return;
             }
-            Task task = Task.Run(() => APIClient.PostRequestData("http://localhost:6343/api/Admin/TryEnter", new AdminViewModel
+            Task task = Task.Run(() => APIClient.PostRequestData("http://localhost:6253/api/Admin/TryEnter", new AdminViewModel
             {
                 Login = LoginTextBox.Text,
                 Password = PasswordTextBox.Text

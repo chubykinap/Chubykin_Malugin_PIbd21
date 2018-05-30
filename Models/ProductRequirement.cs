@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Models
+﻿namespace Models
 {
     /// <summary>
     /// Требования к продукту для создания питания

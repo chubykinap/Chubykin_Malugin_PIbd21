@@ -11,6 +11,7 @@ namespace Models
     {
         public int ID { set; get; }
 		
+        [Required]
         public string FoodName { set; get; }
 
 		[ForeignKey("FoodId")]

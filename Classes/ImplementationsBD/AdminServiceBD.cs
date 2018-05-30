@@ -12,9 +12,9 @@ namespace Classes.ImplementationsBD
 	{
 		private ZooDbContex context;
 
-		public AdminServiceBD(ZooDbContex context)
+		public AdminServiceBD()
 		{
-			this.context = context;
+			this.context = new ZooDbContex();
 		}
 
 		public List<AdminViewModel> GetList()
@@ -23,7 +23,9 @@ namespace Classes.ImplementationsBD
 				.Select(rec => new AdminViewModel
 				{
 					ID = rec.ID,
-					Login = rec.Login
+					Login = rec.Login,
+                    Password = rec.Password,
+                    Mail = rec.Mail
 				})
 				.ToList();
 			return result;
@@ -37,7 +39,9 @@ namespace Classes.ImplementationsBD
 				return new AdminViewModel
 				{
 					ID = element.ID,
-					Login = element.Login
+					Login = element.Login,
+                    Password = element.Password,
+                    Mail = element.Mail
 				};
 			}
 			throw new Exception("Элемент не найден");
@@ -50,9 +54,11 @@ namespace Classes.ImplementationsBD
 			{
 				throw new Exception("Такой логин уже занят");
 			}
-			context.Admins.Add(new Admin
-			{
-				Login = model.Login
+            context.Admins.Add(new Admin
+            {
+                Login = model.Login,
+                Password = model.Password,
+                Mail = model.Mail
 			});
 			context.SaveChanges();
 		}
@@ -70,6 +76,7 @@ namespace Classes.ImplementationsBD
 			{
 				throw new Exception("Элемент не найден");
 			}
+            element.Password = model.Password;
 			element.Login = model.Login;
 			context.SaveChanges();
 		}

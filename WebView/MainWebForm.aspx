@@ -10,12 +10,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="ChangeData" runat="server" OnClick="Button1_Click" Text="Изменить данные" />
+            <asp:Button ID="ChangeData" runat="server" OnClick="ChangeData_Click" Text="Изменить данные" style="height: 25px" />
             <br />
             <br />
             <asp:Button ID="StorageButton" runat="server" OnClick="StorageButton_Click" Text="Склад" Width="100px" />
             <br />
             <asp:Button ID="MailButton" runat="server" OnClick="MailButton_Click" Text="Почта" Width="100px" />
+            <br />
             <br />
             <br />
             <asp:Button ID="AddButton" runat="server" OnClick="AddButton_Click" Text="Добавить" Width="100px" />
@@ -24,24 +25,18 @@
             <asp:Button ID="RefreshButton" runat="server" OnClick="RefreshButton_Click" Text="Обновить" Width="100px" />
             <asp:GridView ID="GridView" runat="server" AutoGenerateColumns="False" DataSourceID="DataSource1">
                 <Columns>
-                    <asp:CommandField ShowSelectButton="True" />
-                    <asp:BoundField DataField="ProductId" HeaderText="Номер питания" SortExpression="ProductId">
-                    <ControlStyle Width="70px" />
-                    <ItemStyle Width="150px" />
+                    <asp:CommandField ShowSelectButton="True">
+                    <ItemStyle Width="50px" />
+                    </asp:CommandField>
+                    <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID">
+                    <ItemStyle Width="100px" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="ProductName" HeaderText="Питание" SortExpression="ProductName">
-                    <ControlStyle Width="70px" />
-                    <ItemStyle Width="150px" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Count" HeaderText="Количество" SortExpression="Count">
-                    <ControlStyle Width="70px" />
-                    <ItemStyle Width="150px" />
+                    <asp:BoundField DataField="FoodName" HeaderText="FoodName" SortExpression="FoodName">
+                    <ItemStyle Width="100px" />
                     </asp:BoundField>
                 </Columns>
             </asp:GridView>
-            <asp:ObjectDataSource ID="DataSource1" runat="server" SelectMethod="GetList" TypeName="Classes.ImplementationsBD.MainServiceBD"></asp:ObjectDataSource>
-            <br />
-            <br />
+            <asp:ObjectDataSource ID="DataSource1" runat="server" SelectMethod="GetList" TypeName="Classes.ImplementationsBD.FoodServiceBD"></asp:ObjectDataSource>
 &nbsp;</div>
     </form>
 </body>

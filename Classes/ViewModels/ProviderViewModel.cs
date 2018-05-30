@@ -10,5 +10,8 @@ namespace Classes.ViewModels
 
         [DataMember]
         public string Login { set; get; }
-	}
+
+        [DataMember]
+        public string Password { get; set; }
+    }
 }
